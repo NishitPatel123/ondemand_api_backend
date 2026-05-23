@@ -112,7 +112,7 @@ async function sendBookingUpdate(user, service, booking) {
           </table>
           ${isCompleted ? `
           <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee;">
-            <a href="http://localhost:8000/downloadInvoice/${booking._id}" style="background-color: #4caf50; color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <a href="https://ondemand-api-backend-m1v5.onrender.comdownloadInvoice/${booking._id}" style="background-color: #4caf50; color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
               Download Invoice PDF
             </a>
           </div>` : ''}
