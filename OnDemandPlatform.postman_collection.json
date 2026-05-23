@@ -1,0 +1,374 @@
+{
+  "info": {
+    "name": "On-Demand Service Booking and Scheduling Platform",
+    "description": "Complete API collection for On-Demand Service Booking and Scheduling Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "base_url", "value": "http://localhost:8000", "type": "string" }],
+  "item": [
+    {
+      "name": "🔐 Common",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/signup", "host": ["{{base_url}}"], "path": ["signup"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Karan Mehta\",\n  \"email\": \"karan@gmail.com\",\n  \"phone\": \"9900000002\",\n  \"address\": \"22, Satellite Road, Ahmedabad\",\n  \"password\": \"Karan@123\"\n}" }
+          }
+        },
+        {
+          "name": "Login (User)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/login", "host": ["{{base_url}}"], "path": ["login"] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"karan@gmail.com\",\n  \"password\": \"Karan@123\"\n}" }
+          }
+        },
+        {
+          "name": "Login (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/login", "host": ["{{base_url}}"], "path": ["login"] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@ondemand.com\",\n  \"password\": \"Admin@123\"\n}" }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/logout", "host": ["{{base_url}}"], "path": ["logout"] }
+          }
+        },
+        {
+          "name": "Session",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/session", "host": ["{{base_url}}"], "path": ["session"] }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/changePassword", "host": ["{{base_url}}"], "path": ["changePassword"] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"karan@gmail.com\",\n  \"newPassword\": \"NewPass@123\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🌐 Public",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/categories", "host": ["{{base_url}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/services", "host": ["{{base_url}}"], "path": ["services"] }
+          }
+        },
+        {
+          "name": "Get Services — Filter by Category",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services?category_id=CATEGORY_ID_HERE",
+              "host": ["{{base_url}}"],
+              "path": ["services"],
+              "query": [{ "key": "category_id", "value": "CATEGORY_ID_HERE" }]
+            }
+          }
+        },
+        {
+          "name": "Get Services — Filter by Price Range",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services?min_price=500&max_price=3000",
+              "host": ["{{base_url}}"],
+              "path": ["services"],
+              "query": [
+                { "key": "min_price", "value": "500" },
+                { "key": "max_price", "value": "3000" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Service Details",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/services/SERVICE_ID_HERE", "host": ["{{base_url}}"], "path": ["services", "SERVICE_ID_HERE"] }
+          }
+        },
+        {
+          "name": "Get All Feedbacks",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/feedbacks", "host": ["{{base_url}}"], "path": ["feedbacks"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🟢 User (Session Required)",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/user/profile", "host": ["{{base_url}}"], "path": ["user", "profile"] }
+          }
+        },
+        {
+          "name": "Update Profile (with image)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{base_url}}/user/updateProfile", "host": ["{{base_url}}"], "path": ["user", "updateProfile"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "name", "value": "Karan Kumar Mehta", "type": "text" },
+                { "key": "phone", "value": "9911111111", "type": "text" },
+                { "key": "address", "value": "10, New CG Road, Ahmedabad", "type": "text" },
+                { "key": "profile_image", "src": "", "type": "file" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Book Service",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/user/bookService", "host": ["{{base_url}}"], "path": ["user", "bookService"] },
+            "body": { "mode": "raw", "raw": "{\n  \"service_id\": \"SERVICE_ID_HERE\",\n  \"booking_datetime\": \"2025-12-25T10:00:00\"\n}" }
+          }
+        },
+        {
+          "name": "My Bookings",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/user/myBookings", "host": ["{{base_url}}"], "path": ["user", "myBookings"] }
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/user/cancelBooking", "host": ["{{base_url}}"], "path": ["user", "cancelBooking"] },
+            "body": { "mode": "raw", "raw": "{\n  \"booking_id\": \"BOOKING_ID_HERE\"\n}" }
+          }
+        },
+        {
+          "name": "Generate Razorpay Order ID",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/user/genOrderId", "host": ["{{base_url}}"], "path": ["user", "genOrderId"] },
+            "body": { "mode": "raw", "raw": "{\n  \"booking_id\": \"BOOKING_ID_HERE\"\n}" }
+          }
+        },
+        {
+          "name": "Verify Razorpay Payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/user/verifyPayment", "host": ["{{base_url}}"], "path": ["user", "verifyPayment"] },
+            "body": { "mode": "raw", "raw": "{\n  \"booking_id\": \"BOOKING_ID_HERE\",\n  \"razorpay_order_id\": \"order_XXXX\",\n  \"razorpay_payment_id\": \"pay_XXXX\",\n  \"razorpay_signature\": \"signature_XXXX\"\n}" }
+          }
+        },
+        {
+          "name": "Add Feedback",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/user/addFeedback", "host": ["{{base_url}}"], "path": ["user", "addFeedback"] },
+            "body": { "mode": "raw", "raw": "{\n  \"booking_id\": \"BOOKING_ID_HERE\",\n  \"service_id\": \"SERVICE_ID_HERE\",\n  \"rating\": 5,\n  \"feedback\": \"Very good service and affordable price. Highly recommended!\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔴 Admin (Session Required)",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/users", "host": ["{{base_url}}"], "path": ["admin", "users"] }
+          }
+        },
+        {
+          "name": "Update User Status (Activate)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/admin/updateUserStatus", "host": ["{{base_url}}"], "path": ["admin", "updateUserStatus"] },
+            "body": { "mode": "raw", "raw": "{\n  \"user_id\": \"USER_ID_HERE\",\n  \"status\": \"Active\"\n}" }
+          }
+        },
+        {
+          "name": "Update User Status (Deactivate)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/admin/updateUserStatus", "host": ["{{base_url}}"], "path": ["admin", "updateUserStatus"] },
+            "body": { "mode": "raw", "raw": "{\n  \"user_id\": \"USER_ID_HERE\",\n  \"status\": \"Inactive\"\n}" }
+          }
+        },
+        {
+          "name": "Add Category (with image)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{base_url}}/admin/addCategory", "host": ["{{base_url}}"], "path": ["admin", "addCategory"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "name", "value": "Home Renovation & Remodeling", "type": "text" },
+                { "key": "description", "value": "Professional home renovation and remodeling services", "type": "text" },
+                { "key": "image", "src": "", "type": "file" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Category (with image)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{base_url}}/admin/updateCategory", "host": ["{{base_url}}"], "path": ["admin", "updateCategory"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "id", "value": "CATEGORY_ID_HERE", "type": "text" },
+                { "key": "name", "value": "Home Renovation", "type": "text" },
+                { "key": "status", "value": "Active", "type": "text" },
+                { "key": "image", "src": "", "type": "file" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/deleteCategory/CATEGORY_ID_HERE", "host": ["{{base_url}}"], "path": ["admin", "deleteCategory", "CATEGORY_ID_HERE"] }
+          }
+        },
+        {
+          "name": "Get All Categories (Admin)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/categories", "host": ["{{base_url}}"], "path": ["admin", "categories"] }
+          }
+        },
+        {
+          "name": "Add Service (with image)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{base_url}}/admin/addService", "host": ["{{base_url}}"], "path": ["admin", "addService"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "category_id", "value": "CATEGORY_ID_HERE", "type": "text" },
+                { "key": "name", "value": "Wooden Flooring", "type": "text" },
+                { "key": "description", "value": "Premium wooden flooring installation", "type": "text" },
+                { "key": "price", "value": "4999", "type": "text" },
+                { "key": "image", "src": "", "type": "file" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Service (with image)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{base_url}}/admin/updateService", "host": ["{{base_url}}"], "path": ["admin", "updateService"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "id", "value": "SERVICE_ID_HERE", "type": "text" },
+                { "key": "name", "value": "Premium Wooden Flooring", "type": "text" },
+                { "key": "price", "value": "5499", "type": "text" },
+                { "key": "status", "value": "Active", "type": "text" },
+                { "key": "image", "src": "", "type": "file" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/deleteService/SERVICE_ID_HERE", "host": ["{{base_url}}"], "path": ["admin", "deleteService", "SERVICE_ID_HERE"] }
+          }
+        },
+        {
+          "name": "Get All Services (Admin)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/services", "host": ["{{base_url}}"], "path": ["admin", "services"] }
+          }
+        },
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/bookings", "host": ["{{base_url}}"], "path": ["admin", "bookings"] }
+          }
+        },
+        {
+          "name": "Update Booking (Ongoing → Completed)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/admin/updateBooking", "host": ["{{base_url}}"], "path": ["admin", "updateBooking"] },
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"BOOKING_ID_HERE\",\n  \"status\": \"Completed\",\n  \"start_datetime\": \"2025-12-25T10:00:00\",\n  \"complete_datetime\": \"2025-12-25T14:00:00\"\n}" }
+          }
+        },
+        {
+          "name": "Update Booking (Cancel)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/admin/updateBooking", "host": ["{{base_url}}"], "path": ["admin", "updateBooking"] },
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"BOOKING_ID_HERE\",\n  \"status\": \"Cancelled\"\n}" }
+          }
+        },
+        {
+          "name": "Get All Payments",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/payments", "host": ["{{base_url}}"], "path": ["admin", "payments"] }
+          }
+        },
+        {
+          "name": "Get All Feedbacks (Admin)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/feedbacks", "host": ["{{base_url}}"], "path": ["admin", "feedbacks"] }
+          }
+        },
+        {
+          "name": "Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/admin/dashboardStats", "host": ["{{base_url}}"], "path": ["admin", "dashboardStats"] }
+          }
+        }
+      ]
+    }
+  ]
+}
