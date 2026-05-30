@@ -66,7 +66,6 @@ app.use(cors({
     "http://localhost:5174",
     "https://your-frontend.onrender.com",
     "https://ondemand-api-backend-m1v5.onrender.com"
-    // ← replace with your actual frontend URL
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
