@@ -64,7 +64,8 @@ app.use(cors({
     "http://localhost:3001",
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://ondemandservice-api-frontend.onrender.com"
+    "https://ondemandservice-api-frontend.onrender.com",
+    "https://ondemand-admin.onrender.com"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
